@@ -10,10 +10,21 @@ function selectCell(e) {
     l.add('selected')
 }
 
-
 function setVal(e) {
     e.target.textContent = document.getElementById('val').value
     console.log(e.target)
+}
+
+function readFile(e) {
+    let f = e.target.files[0]
+    if (!f) return
+
+    let rd = new FileReader()
+    rd.onload = (e) => {
+        let content = e.target.result
+        console.log(content)
+    }
+    rd.readAsText(f)
 }
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -22,4 +33,5 @@ document.addEventListener('DOMContentLoaded', (e) => {
         c.addEventListener('contextmenu', selectCell)
         c.addEventListener('wheel', setVal)
     }
+    document.getElementById('file-input').addEventListener('change', readFile)
 })

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <input type="file" id="file-input">
     <input type="text" name="val" id="val">
     <table>
         <tr>
@@ -34,6 +35,9 @@
             <td></td>
         </tr>
     </table>
+    <p>v=min(tr[i-1][j], tr[i-1][j-1], tr[i-1][j+1])</p>
+    <p>tr[i][j]+=v>0</p>
+    <p>tr[i][j]+=v>>1</p>
 </body>
 
 </html>
