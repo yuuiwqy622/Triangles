@@ -13,3 +13,12 @@ polygon {
     stroke: purple;
     stroke-width: 5px;   
 }
+
+polygon.selected {
+    stroke:orange;
+    box-shadow: 0 0 10px orange;
+}
+
+polygon.empty{
+    fill:white
+}
