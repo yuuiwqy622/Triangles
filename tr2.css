@@ -6,3 +6,7 @@ table td{
 .selected {
     border-color: orange;
 }
+
+.sub{
+    border-color: purple;
+}
