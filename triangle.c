@@ -11,16 +11,52 @@ void readTriangles(int n) {
   }
 }
 
-void printArea(int n) {}
+int min(int a, int b) { return a < b ? a : b; }
+
+int max(int a, int b) { return a > b ? a : b; }
+
+void printArea(int n) {
+  int m = (n - 1) * 2 + 1;
+  int area = 0;
+
+  /* downward triangles */
+  for (int i = 1; i < n; ++i)
+    for (int j = i; j < m - i; ++j) {
+      if (tr[i][j]) {
+        tr[i][j] = min(min(tr[i - 1][j - 1], tr[i - 1][j]), tr[i - 1][j + 1]);
+        ++tr[i][j];
+      }
+
+      area = max(area, tr[i][j]);
+    }
+
+  /* upward triangles */
+  for (int j = n - 2; j < m - n + 2; ++j) {
+    tr[n - 2][j] = tr[n - 2][j] > 0;
+  }
+
+  for (int i = n - 3; i >= 0; --i)
+    for (int j = i + 2; j < (n + n - i - 3); ++j) {
+      if (tr[i][j]) {
+        tr[i][j] = min(min(tr[i + 1][j - 1], tr[i + 1][j]), tr[i + 1][j + 1]);
+        ++tr[i][j];
+      }
+
+      area = max(area, tr[i][j]);
+    }
+
+  printf("The largest triangle area is %d.\n", area * area);
+}
 
 int main(void) {
   int n;
-  while (1) {
+  for (int i = 1;; ++i) {
     scanf("%d\n", &n);
     if (!n)
       return 0;
 
     readTriangles(n);
+    printf("Triangle #%d\n", i);
     printArea(n);
   }
 
